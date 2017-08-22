@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Сделал предварительный backup изменяемой таблицы
 
 from mysql.connector import MySQLConnection, Error
 import openpyxl
@@ -99,7 +100,8 @@ if len(a.split('/')) > 1:
     path = '/'.join(a.split('/')[:len(a.split('/'))-1])+'/'              # только путь без имени файла
 else:
     path = ''
-with open(path + 'cl.csv', 'w', encoding='cp1251') as output_file:
+
+with open(path + 'cl.csv', 'w', encoding='cp1251') as output_file:  # backup изменяемой таблицы
     dict_writer = csv.DictWriter(output_file, col_names, delimiter=';') #, quoting=csv.QUOTE_NONNUMERIC)
     dict_writer.writeheader()
     dict_writer.writerows(cl_csvs)
